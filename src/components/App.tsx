@@ -3,18 +3,23 @@
 import Product from './Product';
 import Mailbox from './Mailbox';
 import BooksList from './BooksList';
-
-const books = [
-  { id: 'id-1', name: 'JS for beginners' },
-  { id: 'id-2', name: 'React basics' },
-  { id: 'id-3', name: 'React Query overview' },
-];
+import books from '../books.json';
 
 export default function App() {
   return (
     <>
-      <h1>Books of the week</h1>
-      <BooksList books={books} />
+      <div>
+        <h1>Books of the week</h1>
+        <ul>
+          {books.map(bookData => {
+            return (
+              <li key={bookData.id}>
+                <BooksList book={bookData} />
+              </li>
+            );
+          })}
+        </ul>
+      </div>
       <h1>Best selling</h1>
       <Product
         name="Tacos with Lime"
@@ -33,8 +38,8 @@ export default function App() {
         unreadMessages={[]}
       />
       <div>
-        {[1, 2, 3].map(item => {
-          return <p>{item}</p>;
+        {[1, 2, 3].map((item, index) => {
+          return <p key={index}>{item}</p>;
         })}
       </div>
     </>

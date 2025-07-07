@@ -1,14 +1,14 @@
-interface Book {
-  id: string;
-  name: string;
+import type { Book } from '../types/Book';
+
+interface BookProps {
+  book: Book;
 }
 
-export default function BooksList(books: Book[]) {
+export default function BooksList({ book: { id, name } }: BookProps) {
   return (
-    <ul>
-      {books.map(book => (
-        <li key={book.id}>{book.name}</li>
-      ))}
-    </ul>
+    <div>
+      <p>id: {id}</p>
+      <p>name: {name}</p>
+    </div>
   );
 }
